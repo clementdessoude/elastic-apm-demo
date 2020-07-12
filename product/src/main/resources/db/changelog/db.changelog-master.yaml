@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/20200712125800-add-customer-transaction-tables.yaml
+  - include:
+      file: db/changelog/changes/20200713131709-add-customer-birthdate.yaml

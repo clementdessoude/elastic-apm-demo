@@ -1,0 +1,14 @@
+databaseChangeLog:
+- changeSet:
+    id: 1594639035944-1
+    author: clementdessoude (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: birth_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        tableName: customer
+

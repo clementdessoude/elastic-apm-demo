@@ -1,0 +1,75 @@
+databaseChangeLog:
+- changeSet:
+    id: 1594551485347-1
+    author: clementdessoude (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: first_name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: last_name
+            type: VARCHAR(255)
+        tableName: customer
+- changeSet:
+    id: 1594551485347-2
+    author: clementdessoude (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: VARCHAR(255)
+        - column:
+            name: amount_in_cents
+            type: BIGINT
+        - column:
+            name: date_time
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: customer_id
+            type: VARCHAR(255)
+        tableName: transaction
+- changeSet:
+    id: 1594551485347-3
+    author: clementdessoude (generated)
+    changes:
+    - addPrimaryKey:
+        columnNames: id
+        constraintName: customerPK
+        tableName: customer
+- changeSet:
+    id: 1594551485347-4
+    author: clementdessoude (generated)
+    changes:
+    - addPrimaryKey:
+        columnNames: id
+        constraintName: transactionPK
+        tableName: transaction
+- changeSet:
+    id: 1594551485347-5
+    author: clementdessoude (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: customer_id
+        baseTableName: transaction
+        constraintName: FKcustomer_transaction
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: customer
+
