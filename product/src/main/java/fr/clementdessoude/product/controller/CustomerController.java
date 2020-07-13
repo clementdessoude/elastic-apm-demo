@@ -18,7 +18,7 @@ public class CustomerController {
 
     @GetMapping("/{userId}/transactions/sum")
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ROLE_ADMIN + "\")")
-    public ResponseEntity storeConsentInformation(@PathVariable String userId) {
+    public ResponseEntity<Long> storeConsentInformation(@PathVariable String userId) {
         try {
             return ResponseEntity.ok(customerService.getAmountSpentByCustomer(userId));
         } catch (UnknownCustomerException e) {
@@ -28,13 +28,13 @@ public class CustomerController {
 
     @GetMapping("below/{age}/transactions/sum")
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ROLE_ADMIN + "\")")
-    public ResponseEntity getTotalAmount(@PathVariable Long age) {
-        return ResponseEntity.ok(customerService.getAmountSpentByCustomerUnderAge(age));
+    public Long getTotalAmount(@PathVariable Long age) {
+        return customerService.getAmountSpentByCustomerUnderAge(age);
     }
 
     @GetMapping("below/{age}/transactions/sum/v2")
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ROLE_ADMIN + "\")")
-    public ResponseEntity getTotalAmountV2(@PathVariable Long age) {
-        return ResponseEntity.ok(customerService.getAmountSpentByCustomerUnderAgeV2(age));
+    public Long getTotalAmountV2(@PathVariable Long age) {
+        return customerService.getAmountSpentByCustomerUnderAgeV2(age);
     }
 }
