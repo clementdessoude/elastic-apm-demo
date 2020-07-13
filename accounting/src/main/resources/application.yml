@@ -1,0 +1,56 @@
+info:
+  version: 0.0.1
+
+spring:
+  application:
+    name: accounting
+
+  main:
+    banner-mode: off
+
+  data:
+    rest:
+      detection-strategy: annotated
+
+  session:
+    store-type: jdbc
+
+  liquibase:
+    user: postgres
+    password: password
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      write-dates-as-timestamps: false
+  date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+
+server:
+  error.whitelabel.enabled: false
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        secure: true
+    context-path: /api
+  port: 8081
+
+elastic:
+  apm:
+    service-name: accounting
+    server-urls:
+      - http://localhost:8200
+    application-packages:
+      - fr.bpifrance
+
+application:
+  services:
+    api:
+      basic-authentication:
+        user: admin
+        password: SOME_PASSWORD
+    product:
+      endpoint: http://localhost:8080/api
+      username: admin
+      password: SOME_PASSWORD
